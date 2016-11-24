@@ -1,4 +1,4 @@
-// Fig. 8.38: AddressBook.java
+// Patrick Shaughnessy
 // An address book database example that allows information to
 // be inserted, updated and deleted. The example uses
 // transactions to ensure that the operations complete
@@ -10,13 +10,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // Java extension packages
 import javax.swing.*;
 import javax.swing.event.*;
 
 public class AddressBook extends JFrame {
-
+    private static final Logger logger = Logger.getLogger("logger");
     // reference for manipulating multiple document interface
     private JDesktopPane desktop;
 
@@ -150,15 +152,20 @@ public class AddressBook extends JFrame {
     public static void main( String args[] )
     {
         try{
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch(Exception ex ){
-            ex.printStackTrace();
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+        }catch(Exception e){
 
         }
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                logger.log(Level.INFO,"New addressbook");
+                new AddressBook();
+            }
+        });
 
 
-        new AddressBook();
     }
 
     // Private inner class defines action that enables
@@ -180,17 +187,23 @@ public class AddressBook extends JFrame {
         // display window in which user can input entry
         public void actionPerformed( ActionEvent e )
         {
-            // create new internal window
-            AddressBookEntryFrame entryFrame =
-                    createAddressBookEntryFrame();
 
-            // set new AddressBookEntry in window
-            entryFrame.setAddressBookEntry(
-                    new AddressBookEntry() );
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    // create new internal window
+                    AddressBookEntryFrame entryFrame =
+                            createAddressBookEntryFrame();
 
-            // display window
-            desktop.add( entryFrame );
-            entryFrame.setVisible( true );
+                    // set new AddressBookEntry in window
+                    entryFrame.setAddressBookEntry(
+                            new AddressBookEntry() );
+
+                    // display window
+                    desktop.add( entryFrame );
+                    entryFrame.setVisible( true );
+                }
+            }).run();
         }
 
     }  // end inner class NewAction
@@ -354,7 +367,7 @@ public class AddressBook extends JFrame {
                 // is returned containing data.
                 ArrayList<AddressBookEntry> People = database.findPerson(lastName);
                 int size = People.size();
-                System.out.println("Value of size: "+size);
+                logger.log(Level.INFO,"Value of size: "+size);
 
 
                 for (AddressBookEntry person : People )
@@ -375,9 +388,13 @@ public class AddressBook extends JFrame {
                         entryFrame.setVisible(true);
 
                     }
-                    else
-                        JOptionPane.showMessageDialog(desktop, "Entry with last name \"" + lastName + "\" not found in address book");
+
+
+
                 }
+//                JOptionPane.showMessageDialog(desktop, "Entry with last name \""
+//                        + lastName + "\" not found in address book");
+//                logger.log(Level.INFO,"Entry with last name: " + lastName);
             }  // end "if ( lastName == null )"
 
         }  // end method actionPerformed
@@ -404,20 +421,3 @@ public class AddressBook extends JFrame {
 
     }  // end inner class ExitAction
 }
-
-
-
-/**************************************************************************
- * (C) Copyright 2001 by Deitel & Associates, Inc. and Prentice Hall.     *
- * All Rights Reserved.                                                   *
- *                                                                        *
- * DISCLAIMER: The authors and publisher of this book have used their     *
- * best efforts in preparing the book. These efforts include the          *
- * development, research, and testing of the theories and programs        *
- * to determine their effectiveness. The authors and publisher make       *
- * no warranty of any kind, expressed or implied, with regard to these    *
- * programs or to the documentation contained in these books. The authors *
- * and publisher shall not be liable in any event for incidental or       *
- * consequential damages in connection with, or arising out of, the       *
- * furnishing, performance, or use of these programs.                     *
- *************************************************************************/

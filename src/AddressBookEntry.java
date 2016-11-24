@@ -1,22 +1,26 @@
+// Patrick Shaughnessy
 // Fig. 8.33: AddressBookEntry.java
 // JavaBean to represent one address book entry.
-//testing git
-
 
 public class AddressBookEntry {
     private String firstName = "";
     private String lastName = "";
     private String address1 = "";
-    private String address2 = "";
-    private String address3 = "";
-    private String address4 = "";
     private String city = "";
-    private String county = "";
     private String eircode = "";
+    private String county = "";
     private String phoneNumber = "";
     private String emailAddress = "";
-    private String emailAddress2 = "";
-    private String phoneNumber2 = "";
+
+
+    private String altaddress = "";
+    private String altcity = "";
+    private String alteircode = "";
+    private String altcounty = "";
+    private String altEmail = "";
+    private String homephone = "";
+    private String altphone = "";
+
     private int personID;
     private int addressID;
     private int phoneID;
@@ -25,38 +29,6 @@ public class AddressBookEntry {
     // empty constructor
     public AddressBookEntry()
     {
-    }
-
-    public String getAddress3() {
-        return address3;
-    }
-
-    public void setAddress3(String address3) {
-        this.address3 = address3;
-    }
-
-    public String getAddress4() {
-        return address4;
-    }
-
-    public void setAddress4(String address4) {
-        this.address4 = address4;
-    }
-
-    public String getEmailAddress2() {
-        return emailAddress2;
-    }
-
-    public void setEmailAddress2(String emailAddress2) {
-        this.emailAddress2 = emailAddress2;
-    }
-
-    public String getPhoneNumber2() {
-        return phoneNumber2;
-    }
-
-    public void setPhoneNumber2(String phoneNumber2) {
-        this.phoneNumber2 = phoneNumber2;
     }
 
     // set person's id
@@ -101,17 +73,6 @@ public class AddressBookEntry {
         return address1;
     }
 
-    // set second line of person's address
-    public void setAddress2( String secondLine )
-    {
-        address2 = secondLine;
-    }
-
-    // get second line of person's address
-    public String getAddress2()
-    {
-        return address2;
-    }
 
     // set city in which person lives
     public void setCity( String personCity )
@@ -123,30 +84,6 @@ public class AddressBookEntry {
     public String getCity()
     {
         return city;
-    }
-
-    // set county in which person lives
-    public void setCounty( String personCounty )
-    {
-        county = personCounty;
-    }
-
-    // get County in which person lives
-    public String getCounty()
-    {
-        return county;
-    }
-
-    // set person's eir code
-    public void setEircode( String eir)
-    {
-        eircode = eir;
-    }
-
-    // get person's eir code
-    public String getEircode()
-    {
-        return eircode;
     }
 
     // set person's phone number
@@ -214,7 +151,78 @@ public class AddressBookEntry {
     {
         return emailID;
     }
+
+    public String getAltaddress() {
+        return altaddress;
+    }
+
+    public void setAltaddress(String altaddress) {
+        this.altaddress = altaddress;
+    }
+
+    public String getAltcity() {
+        return altcity;
+    }
+
+    public void setAltcity(String altcity) {
+        this.altcity = altcity;
+    }
+
+    public String getAlteircode() {
+        return alteircode;
+    }
+
+    public void setAlteircode(String altstate) {
+        this.alteircode = altstate;
+    }
+
+    public String getAltcounty() {
+        return altcounty;
+    }
+
+    public void setAltcounty(String altzipcode) {
+        this.altcounty = altzipcode;
+    }
+
+    public String getAltEmail() {
+        return altEmail;
+    }
+
+    public void setAltamail(String altEmail) {
+        this.altEmail = altEmail;
+    }
+
+    public String getHomephone() {
+        return homephone;
+    }
+
+    public void setHomephone(String homephone) {
+        this.homephone = homephone;
+    }
+
+    public String getAltphone() {
+        return altphone;
+    }
+
+    public void setAltphone(String altphone) {
+        this.altphone = altphone;
+    }
+
+    public String getCounty() {return county;}
+
+    public void setCounty(String county) {this.county = county;}
+
+    public String getEircode() {return eircode;}
+
+    public void setEircode(String eircode) {this.eircode = eircode;}
+
+    public void setAltEmail(String altEmail) {
+        this.altEmail = altEmail;
+    }
+
+
 }  // end class AddressBookEntry
+
 
 
 /**************************************************************************
