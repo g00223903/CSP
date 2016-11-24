@@ -399,7 +399,7 @@ public class AddressBook extends JFrame {
                             "Entry with last name \"" + lastName +
                                     "\" not found in address book");
 
-               logger.log(Level.INFO,"Not found in address book: " + lastName);
+               logger.log(Level.INFO,"Not found in address book : " + lastName);
             }  // end "if ( lastName == null )"
 
         }  // end method actionPerformed
