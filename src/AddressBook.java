@@ -8,7 +8,6 @@
 // Java core packages
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -153,7 +152,7 @@ public class AddressBook extends JFrame {
     {
         try{
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-            
+
         }catch(Exception e){
 
         }
@@ -370,27 +369,30 @@ public class AddressBook extends JFrame {
                 logger.log(Level.INFO,"Value of size: "+size);
 
 
+
                 for (AddressBookEntry person : People )
                 {
                     //AddressBookEntry person = People.get(i);
                     if (person != null)
                     {
 
-                        // create window to display AddressBookEntry
-                        AddressBookEntryFrame entryFrame =
-                                createAddressBookEntryFrame();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // create window to display AddressBookEntry
+                                AddressBookEntryFrame entryFrame =
+                                        createAddressBookEntryFrame();
 
-                        // set AddressBookEntry to display
-                        entryFrame.setAddressBookEntry(person);
+                                // set AddressBookEntry to display
+                                entryFrame.setAddressBookEntry(person);
 
-                        // display window
-                        desktop.add(entryFrame);
-                        entryFrame.setVisible(true);
+                                // display window
+                                desktop.add(entryFrame);
+                                entryFrame.setVisible(true);
 
+                            }
+                        }).run();
                     }
-
-
-
                 }
 //                JOptionPane.showMessageDialog(desktop, "Entry with last name \""
 //                        + lastName + "\" not found in address book");
