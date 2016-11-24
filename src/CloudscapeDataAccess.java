@@ -74,7 +74,7 @@ public class CloudscapeDataAccess
         sqlInsertAddress = connection.prepareStatement(
                 "INSERT INTO addresses ( personID, address1, " +
                         "address2,address3,address4, city, county, eircode ) " +
-                        "VALUES ( ? , ? , ? , ? , ? , ? , ? , ? )" );
+                        "VALUES ( ? , ? , ? , ? , ? , ? , ? , ?, ? )" );
 
         // insert phone number in table phoneNumbers
         sqlInsertPhone = connection.prepareStatement(
@@ -163,9 +163,7 @@ public class CloudscapeDataAccess
             sqlFind.setString( 1, lastName );
             ResultSet resultSet = sqlFind.executeQuery();
 
-            // if no records found, return immediately
-            // ( ! )
-            //  return null;
+
 
             // create new AddressBookEntry
             while(resultSet.next()) {
@@ -227,12 +225,12 @@ public class CloudscapeDataAccess
             // update addresses table
             sqlUpdateAddress.setString( 1, person.getAddress1() );
             sqlUpdateAddress.setString( 2, person.getAddress2() );
-            sqlUpdateAddress.setString( 4, person.getAddress3() );
-            sqlUpdateAddress.setString( 5, person.getAddress4() );
-            sqlUpdateAddress.setString( 6, person.getCity() );
-            sqlUpdateAddress.setString( 7, person.getCounty() );
-            sqlUpdateAddress.setString( 8, person.getEircode() );
-            // sqlUpdateAddress.setInt( 9, person.getAddressID() );
+            sqlUpdateAddress.setString( 3, person.getAddress3() );
+            sqlUpdateAddress.setString( 4, person.getAddress4() );
+            sqlUpdateAddress.setString( 5, person.getCity() );
+            sqlUpdateAddress.setString( 6, person.getCounty() );
+            sqlUpdateAddress.setString( 7, person.getEircode() );
+            sqlUpdateAddress.setInt( 8, person.getAddressID() );
 
             result = sqlUpdateAddress.executeUpdate();
 
