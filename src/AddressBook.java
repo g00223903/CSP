@@ -153,7 +153,7 @@ public class AddressBook extends JFrame {
     {
         try{
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+            
         }catch(Exception e){
 
         }
