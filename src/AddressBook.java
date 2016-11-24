@@ -394,9 +394,12 @@ public class AddressBook extends JFrame {
                         }).run();
                     }
                 }
-//                JOptionPane.showMessageDialog(desktop, "Entry with last name \""
-//                        + lastName + "\" not found in address book");
-//                logger.log(Level.INFO,"Entry with last name: " + lastName);
+                if ( People.size() == 0 )
+                    JOptionPane.showMessageDialog(desktop,
+                            "Entry with last name \"" + lastName +
+                                    "\" not found in address book");
+
+               logger.log(Level.INFO,"Not found in address book: " + lastName);
             }  // end "if ( lastName == null )"
 
         }  // end method actionPerformed
